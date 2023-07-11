@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\category\CategoryController;
 use App\Http\Controllers\admin\product\ProductController;
 use App\Http\Controllers\admin\subcategory\SubcategoryController;
 use App\Http\Controllers\admin\subsubcategory\SubsubController;
+use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\ProfileController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\slider\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin;
 use App\Models\Subcategory;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,11 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/product/view/modal/{id}', 'productviewajax');
 
 });
+
+Route::controller(CartController::class)->group(function(){
+    Route::post('/cart/data/store/{p_id}', 'addToCart');
+});
+
 
 Route::controller(AdminController::class)->group(function(){
 

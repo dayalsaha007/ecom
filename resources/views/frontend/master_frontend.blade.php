@@ -409,7 +409,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><strong id="pname" ></strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" id="modalclose" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -434,25 +434,26 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">select Color</label>
-                    <select class="form-control" name="color" id="exampleFormControlSelect1">
+
+                    <label>select Color</label>
+                    <select class="form-control" name="color" id="color">
                       <option>1</option>
                     </select>
                   </div>
 
                   <div class="form-group" id="sizeArea">
-                    <label for="exampleFormControlSelect1">select size</label>
-                    <select class="form-control" name="size" id="exampleFormControlSelect2">
-
+                    <label >select size</label>
+                    <select class="form-control" name="size" id="size">
                     </select>
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleFormControlSelect1">Product Quantity</label>
-                  <input type="number" class="form-control" name="p_qty"min="1" id="exampleFormControlSelect1" >
+                    <label>Product Quantity</label>
+                  <input type="number" class="form-control" name="qty" value="1" min="1" id="qty" >
                   </div>
 
-                  <button class="btn btn-sm btn-primary" >Add To Cart</button>
+                  <input type="hidden" id="p_id" >
+    <button type="submit" class="btn btn-sm btn-primary" onclick="addToCart()" >Add To Cart</button>
             </div>
 
         </div>
@@ -479,7 +480,6 @@
 <script type="text/javascript">
 
     function pView(id){
-
         $.ajax({
             type:'GET',
             url:'/product/view/modal/'+id,
@@ -490,6 +490,9 @@
                 $('#pcat').text(data.product.rel_to_cat.c_name_eng);
                 $('#pbrand').text(data.product.rel_to_brand.b_name_eng);
                 $('#pimage').attr('src','/'+'uploads/p_image'+'/'+data.product.p_image);
+
+                $('#p_id').val(id);
+                $('#qty').val(1);
 
                 $('select[name="color"]').empty();
                 $.each(data.color, function(key,value){
@@ -532,13 +535,36 @@
     }
     <!-- end product view Js code -->
 
-    <!-- Start Add to Cart Code with Boom Boom man -->
+    <!-- start Add to Cart Code  with Boom Boom man -->
 
 
+    function addToCart(){
 
-    <!-- End Add to Cart Code  with Boom Boom man -->
+            var p_name =  $('#pname').text();
+            var p_id = $('#p_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var qty = $('#qty').val();
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                data:{
+                color:color, size:size, qty:qty, p_name:p_name
+                },
+                url:window.location.origin+'/cart/data/store/'+p_id,
+                success:function(data){
+                    console.log(data)
+                }
+            })
+        }
+
+
+<!-- End Add to Cart Code  with Boom Boom man -->
+
+
 
 </script>
+
 
 
 @yield('footer_script')
