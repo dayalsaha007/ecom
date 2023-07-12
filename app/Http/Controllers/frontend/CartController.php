@@ -27,7 +27,7 @@ class CartController extends Controller
                 ],
             ]);
 
-            return response()->json(['success', 'Product added on Cart']);
+            return response()->json(['success', 'Successfully Product added on Cart']);
         }
         else{
             Cart::add([
@@ -43,7 +43,7 @@ class CartController extends Controller
                 ],
             ]);
 
-            return response()->json(['success', 'Product added on Cart']);
+            return response()->json(['success', 'Successfully Product added on Cart']);
 
         }
     }

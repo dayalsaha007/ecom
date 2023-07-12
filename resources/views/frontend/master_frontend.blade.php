@@ -401,6 +401,8 @@
 <script src="{{ asset('frontend_assets') }}/assets/js/wow.min.js"></script>
 <script src="{{ asset('frontend_assets') }}/assets/js/scripts.js"></script>
 <script src="{{ asset('frontend_assets') }}/assets/js/toastr.min.js"></script>
+<!--sweet alert2 cdn---->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <!--Start Add to cart product Modal -->
@@ -554,15 +556,28 @@
                 url:'/cart/data/store/'+p_id,
                 success:function(data){
                     $('#modalclose').click();
-                    console.log(data)
-                },
-                error:function() {
-            alert('ashe nai');
-    }
-            })
-        }
 
+                    const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                            })
 
+                            if ($.isEmptyObject(data.error)){
+                                Toast.fire({
+                                    title: data.success
+                                });
+                            }
+                            else{
+                                Toast.fire({
+                                    title: data.error
+                                });
+                            }
+                        }
+                    })
+                }
 <!-- End Add to Cart Code  with Boom Boom man -->
 
 
