@@ -544,17 +544,21 @@
             var p_id = $('#p_id').val();
             var color = $('#color option:selected').text();
             var size = $('#size option:selected').text();
-            var qty = $('#qty').val();
+            var quantity = $('#qty').val();
             $.ajax({
                 type:'POST',
                 dataType:'json',
                 data:{
-                color:color, size:size, qty:qty, p_name:p_name
+                color:color, size:size, quantity:quantity, p_name:p_name, p_id:p_id
                 },
-                url:window.location.origin+'/cart/data/store/'+p_id,
+                url:'/cart/data/store/'+p_id,
                 success:function(data){
+                    $('#modalclose').click();
                     console.log(data)
-                }
+                },
+                error:function() {
+            alert('ashe nai');
+    }
             })
         }
 

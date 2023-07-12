@@ -19,15 +19,15 @@ class CartController extends Controller
                 'name'=>$request->p_name,
                 'price'=>$product->selling_price,
                 'weight'=>1,
+                'qty'=>$request->quantity,
                 'options'=>[
-                    'qty'=>$request->p_qty,
                     'image'=>$product->p_image,
                     'color'=>$request->color,
                     'size'=>$request->size,
                 ],
             ]);
-         return response()->json(['success', 'Product added on Cart']);
 
+            return response()->json(['success', 'Product added on Cart']);
         }
         else{
             Cart::add([
@@ -35,8 +35,8 @@ class CartController extends Controller
                 'name'=>$request->p_name,
                 'price'=>$product->discount_price,
                 'weight'=>1,
+                'qty'=>$request->quantity,
                 'options'=>[
-                    'qty'=>$request->p_qty,
                     'image'=>$product->p_image,
                     'color'=>$request->color,
                     'size'=>$request->size,
