@@ -143,20 +143,10 @@
             <ul class="dropdown-menu">
               <li>
                 <div class="cart-item product-summary">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="image"> <a href="detail.html"><img src="{{ asset('frontend_assets') }}/assets/images/cart.jpg" alt=""></a> </div>
-                    </div>
-                    <div class="col-xs-7">
-                      <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                      <div class="price">$600.00</div>
-                    </div>
-                    <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
-                  </div>
-                </div>
-                <!-- /.cart-item -->
-                <div class="clearfix"></div>
-                <hr>
+                 <div id="miniCart" >
+
+                 </div>
+
                 <div class="clearfix cart-total">
                   <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$600.00</span> </div>
                   <div class="clearfix"></div>
@@ -580,9 +570,46 @@
                 }
 <!-- End Add to Cart Code  with Boom Boom man -->
 
-
-
 </script>
+
+ <!-- start MiniCart Code  with Boom Boom man -->
+    <script type="text/javascript">
+
+        function miniCart(){
+
+            $.ajax({
+                type: 'GET',
+                url: '/product/mini/cart',
+                dataType: 'json',
+                duccess:function(response){
+                    var miniCart = "";
+
+                    $.each(response.carts, function(key, value){
+
+                        miniCart += `<div class="row">
+                    <div class="col-xs-4">
+                      <div class="image"> <a href="detail.html"><img src="{{ asset('frontend_assets') }}/assets/images/cart.jpg" alt=""></a> </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
+                      <div class="price">$600.00</div>
+                    </div>
+                    <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                  </div>
+                </div>
+                <!-- /.cart-item -->
+                <div class="clearfix"></div>
+                <hr>`
+                    });
+
+                    $('#miniCart').html(miniCart);
+                }
+            })
+        }
+        miniCart();
+
+    </script>
+  <!-- start Add to Cart Code  with Boom Boom man -->
 
 
 

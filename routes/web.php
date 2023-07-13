@@ -57,6 +57,7 @@ Route::controller(FrontendController::class)->group(function(){
 
 Route::controller(CartController::class)->group(function(){
     Route::post('/cart/data/store/{p_id}', 'addToCart');
+    Route::get('/product/mini/cart/', 'addminiCart');
 });
 
 

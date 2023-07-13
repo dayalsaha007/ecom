@@ -47,4 +47,22 @@ class CartController extends Controller
 
         }
     }
+
+
+    function addminiCart(){
+        $carts = Cart::content();
+        $cartqty = Cart::count();
+        $cartTotal = Cart::total();
+
+
+        return  response()->json(array(
+            'carts'=> $carts,
+            'cartqty'=> $cartqty,
+            'cartTotal'=> $cartTotal,
+        ));
+
+    }
+
+
+
 }
