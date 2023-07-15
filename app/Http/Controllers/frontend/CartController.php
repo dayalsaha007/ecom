@@ -60,7 +60,11 @@ class CartController extends Controller
             'cartqty'=> $cartqty,
             'cartTotal'=> $cartTotal,
         ));
+    }
 
+    function miniCartremove($rowId){
+        Cart::remove($rowId);
+        return response()->json(['success', 'Product Removed from Cart']);
     }
 
 
