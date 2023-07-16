@@ -762,13 +762,103 @@
                                 title: data.error
                             })
                         }
-                }
-
-            })
+                    }
+               })
 
            }
         </script>
         <!-- End wishlist code -->
+
+        <!-- Start Wishlist js code -->
+        <script type="text/javascript">
+            function wishlist() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/get_wishlist/product/',
+                    dataType: 'json',
+                    success: function(response) {
+
+                        var rows = ""
+                        $.each(response, function(key, value) {
+                            rows += `<tr>
+                                <td class="col-md-2"><img src="/uploads/p_image/${value.rel_to_product.p_image}" alt="imga"></td>
+                                <td class="col-md-7">
+                                    <div class="product-name"><a href="#">${value.rel_to_product.p_name_eng}</a></div>
+                                    <div class="rating">
+                                        <i class="fa fa-star rate"></i>
+                                        <i class="fa fa-star rate"></i>
+                                        <i class="fa fa-star rate"></i>
+                                        <i class="fa fa-star rate"></i>
+                                        <i class="fa fa-star non-rate"></i>
+                                        <span class="review">( 06 Reviews )</span>
+                                    </div>
+                                    <div class="price">
+
+                                        ${
+                                            value.rel_to_product.discount_price == null? `${value.rel_to_product.selling_price}`
+                                            : `${value.rel_to_product.discount_price} <span>${value.rel_to_product.selling_price}</span>`
+                                        }
+                                    </div>
+                                </td>
+                                <td class="col-md-2">
+                                    <button data-toggle="modal"
+                                    data-target="#exampleModal" id="${value.p_id}" onclick="pView(this.id)" class="btn-upper btn btn-primary">Add to cart</button>
+                                </td>
+                                <td class="col-md-1 close-btn">
+                                    <button type="submit" id="${value.id}"  onclick="wishlistRemove(this.id)"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>`
+                        });
+
+                        $('#wishlist').html(rows);
+                    }
+                })
+            }
+            wishlist();
+        </script>
+        <!-- Close Wishlist js code -->
+
+        <!-- start Wishlist remove js code -->
+
+            <script>
+
+                function wishlistRemove(id){
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'json',
+                        url: '/wishlist/remove/'+id,
+                        success: function(data) {
+                            wishlist();
+
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+
+                            if ($.isEmptyObject(data.error)) {
+                                Toast.fire({
+                                    type: 'success',
+                                    icon: 'success',
+                                    title: data.success
+                                });
+                            } else {
+                                Toast.fire({
+                                    type: 'error',
+                                    icon: 'error',
+                                    title: data.error
+                                });
+                            }
+                        }
+                    })
+
+                }
+
+            </script>
+
+        <!-- Close Wishlist remove js code -->
 
 
 
