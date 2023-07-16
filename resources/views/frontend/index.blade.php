@@ -868,11 +868,13 @@
                                                                         <button class="btn btn-primary cart-btn"
                                                                             type="button">Add to cart</button>
                                                                     </li>
-                                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                                    <li class="lnk wishlist">
+                                                                        <a data-toggle="tooltip"
                                                                             class="add-to-cart" href="detail.html"
                                                                             title="Wishlist"> <i
                                                                                 class="icon fa fa-heart"></i>
-                                                                        </a> </li>
+                                                                        </a>
+                                                                    </li>
                                                                     <li class="lnk"> <a data-toggle="tooltip"
                                                                             class="add-to-cart" href="detail.html"
                                                                             title="Compare"> <i class="fa fa-signal"
@@ -1114,9 +1116,12 @@
                                                             <button class="btn btn-primary cart-btn" type="button">Add to
                                                                 cart</button>
                                                         </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
+
+                                                            <button class="btn btn-primary" class="add-to-cart" id="{{ $product->id }}"
+                                                                onclick="addToWishlist(this.id)" title="Wishlist"> <i
+                                                                    class="icon fa fa-heart"></i> </button>
+
+
                                                         <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                                 title="Compare"> <i class="fa fa-signal"
                                                                     aria-hidden="true"></i> </a> </li>
@@ -1826,5 +1831,5 @@
 
 
 
-            @include('frontend.brand_carosel')
+     @include('frontend.brand_carosel')
         @endsection

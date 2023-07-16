@@ -11,6 +11,7 @@ use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\slider\SliderController;
+use App\Http\Controllers\user\WishlistController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin;
 use App\Models\Subcategory;
@@ -59,6 +60,11 @@ Route::controller(CartController::class)->group(function(){
     Route::post('/cart/data/store/{p_id}', 'addToCart');
     Route::get('/product/mini/cart/', 'addminiCart');
     Route::get('/minicart/product_remove/{rowId}', 'miniCartremove');
+    Route::post('/add_to_wishlist/{p_id}', 'addToWishlist');
+});
+
+Route::controller(WishlistController::class)->group(function(){
+Route::get('/wishlist', 'wishlist')->name('wishlist');
 });
 
 

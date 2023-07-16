@@ -45,10 +45,8 @@
                 <div class="header-top-inner">
                     <div class="cnt-account">
                         <ul class="list-unstyled">
-                            <li><a href="#"><i
-                                        class="icon fa fa-user"></i>{{ session()->get('language') == 'hindi' ? 'मेरा खाता' : 'My Account' }}</a>
-                            </li>
-                            <li><a href="#"><i
+
+                            <li><a href="{{ route('wishlist') }}"><i
                                         class="icon fa fa-heart"></i>{{ session()->get('language') == 'hindi' ? 'इच्छा-सूची' : 'Wishlist' }}</a>
                             </li>
                             <li><a href="#"><i
@@ -163,7 +161,7 @@
                     <!-- /.top-search-holder -->
 
                     <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
-                        <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+                        <!-- == SHOPPING CART DROPDOWN == -->
 
                         <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart"
                                 data-toggle="dropdown">
@@ -697,7 +695,7 @@
         </script>
         <!-- Close mini Cart Code  with Boom Boom man -->
 
-        <!-- start remove ccart with Boom Boom man -->
+        <!-- start remove cart with Boom Boom man -->
         <script>
 
             function miniCartremove(rowId){
@@ -731,7 +729,46 @@
             }
 
         </script>
-        <!-- End remove ccart with Boom Boom man -->
+        <!-- End remove cart with Boom Boom man -->
+
+        <!-- Start Wishlist Code  -->
+        <script>
+           function addToWishlist(p_id){
+
+            $.ajax({
+
+                type:"POST",
+                url: "/add_to_wishlist/"+p_id,
+                dataType:'json',
+                success:function(data){
+
+                    const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                icon: 'success',
+                                title: data.success
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                icon: 'error',
+                                title: data.error
+                            })
+                        }
+                }
+
+            })
+
+           }
+        </script>
+        <!-- End wishlist code -->
 
 
 
