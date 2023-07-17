@@ -75,9 +75,7 @@ class CartController extends Controller
 
         if(Auth::check()){
             $exists =  Wishlist::where('user_id',  Auth::id())->where('p_id',  $p_id)->first();
-
             if(!$exists){
-
                 Wishlist::insert([
                     'user_id'=>Auth::id(),
                     'p_id'=>$request->p_id,
@@ -88,14 +86,10 @@ class CartController extends Controller
             else{
                 return response()->json(['error'=> 'Product Already in your Wishlist!']);
             }
-
-
         }
         else{
             return response()->json(['error'=> 'Please login First!']);
         }
     }
-
-
 
 }

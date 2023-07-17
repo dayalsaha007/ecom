@@ -63,10 +63,13 @@ Route::controller(CartController::class)->group(function(){
     Route::post('/add_to_wishlist/{p_id}', 'addToWishlist');
 });
 
-Route::controller(WishlistController::class)->group(function(){
-Route::get('/wishlist', 'wishlist')->name('wishlist');
-Route::get('/get_wishlist/product/', 'get_wishlist_product');
-Route::get('/wishlist/remove/{id}', 'wishlist_remove');
+Route::middleware('wishlist')->group(function(){
+    Route::controller(WishlistController::class)->group(function(){
+    Route::get('/wishlist', 'wishlist')->name('wishlist');
+    Route::get('/get_wishlist/product/', 'get_wishlist_product');
+    Route::get('/wishlist/remove/{id}', 'wishlist_remove');
+    });
+
 });
 
 

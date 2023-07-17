@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class wishlist
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,12 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::guard('admin')->check()){
-            return redirect()->route('register')->with('error', 'Miss matched login credentials!');
+        if(Auth::check() && Auth::user() ){
+            return $next($request);
         }
-        return $next($request);
+        else{
+     return redirect()->route('register')->with('error', 'Please login First!');
+        }
     }
 }
 
