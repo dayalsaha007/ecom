@@ -63,7 +63,7 @@ Route::controller(CartController::class)->group(function(){
     Route::post('/add_to_wishlist/{p_id}', 'addToWishlist');
 });
 
-Route::middleware('wishlist')->group(function(){
+Route::middleware('wishlist','auth')->group(function(){
     Route::controller(WishlistController::class)->group(function(){
     Route::get('/wishlist', 'wishlist')->name('wishlist');
     Route::get('/get_wishlist/product/', 'get_wishlist_product');
