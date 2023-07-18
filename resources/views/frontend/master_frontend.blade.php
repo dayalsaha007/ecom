@@ -49,7 +49,7 @@
                             <li><a href="{{ route('wishlist') }}"><i
                                         class="icon fa fa-heart"></i>{{ session()->get('language') == 'hindi' ? 'इच्छा-सूची' : 'Wishlist' }}</a>
                             </li>
-                            <li><a href="#"><i
+                            <li><a href="{{ route('mycart') }}"><i
                                         class="icon fa fa-shopping-cart"></i>{{ session()->get('language') == 'hindi' ? 'मेरी गाड़ी' : 'My Cart' }}</a>
                             </li>
                             <li><a href="#"><i
@@ -860,6 +860,143 @@
 
         <!-- Close Wishlist remove js code -->
 
+         <!-- Start mycart code -->
+         <script type="text/javascript">
+            function mycart() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/show_mycart',
+                    dataType: 'json',
+                    success: function(response) {
+
+            var show = ""
+            $.each(response.carts, function(key, value) {
+                show += `<tr>
+                    <td class="col-md-2"><img src="uploads/p_image/${value.options.image}" alt="img"></td>
+                    <td class="col-md-4">
+                        <div class="product-name"><a href="">${value.name}</a></div>
+                        <div class="rating">
+                            <i class="fa fa-star rate"></i>
+                            <i class="fa fa-star rate"></i>
+                            <i class="fa fa-star rate"></i>
+                            <i class="fa fa-star rate"></i>
+                            <i class="fa fa-star non-rate"></i>
+                            <span class="review">( 06 Reviews )</span>
+                        </div>
+                        <div class="price">$${value.price}</div>
+                    </td>
+
+                    <td class="col-md-2">
+                        <div class="price">${value.options.size ==  null
+                            ? `<strong>....</strong>`
+                            : `<strong> ${value.options.size} </strong>`
+                            }
+                        </div>
+                    </td>
+
+                    <td class="col-md-2">
+                        <div class="price">${value.options.color}</div>
+                    </td>
+
+         <td class="col-md-2">
+
+            ${value.qty > 1
+                ?
+            `<button type="submit" id="${value.rowId}"  onclick="mycartdecrement(this.id)"
+            class="btn btn-danger btn-sm" >-</button>`
+            : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button>`
+        }
+
+                            <input type="text" value="${value.qty}" min="1" max="5" style="width:25px;" disabled >
+            <button button="submit" id="${value.rowId}"  onclick="mycartincrement(this.id)"
+            class="btn btn-primary btn-sm">+</button>
+         </td>
+
+
+                    <td class="col-md-2">
+                        <div class="price">$${value.subtotal}</div>
+                    </td>
+
+                    <td class="col-md-1 close-btn">
+                        <button type="submit" id="${value.rowId}"  onclick="mycartRemove(this.id)"><i class="fa fa-times"></i></button>
+                    </td>
+                </tr>`
+            });
+                        $('#mycart').html(show);
+                    }
+                })
+            }
+            mycart();
+        </script>
+        <!-- Close mycart  js code -->
+
+<!-- Close mycart Remove  js code -->
+        <script>
+        function mycartRemove(rowId){
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'json',
+                        url: '/mycart/remove/'+rowId,
+                        success: function(data) {
+                            mycart();
+                            miniCart();
+
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+
+                            if ($.isEmptyObject(data.error)) {
+                                Toast.fire({
+                                    type: 'success',
+                                    icon: 'success',
+                                    title: data.success
+                                });
+                            } else {
+                                Toast.fire({
+                                    type: 'error',
+                                    icon: 'error',
+                                    title: data.error
+                                });
+                            }
+                        }
+                    })
+                }
+                </script>
+    <!-- Close mycart removejs code -->
+
+    <!-- cart increment -->
+    <script>
+        function mycartincrement(rowId){
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'json',
+                        url: '/mycart/increment/'+rowId,
+                        success: function(data) {
+                            mycart();
+                            miniCart();
+                        }
+                    })
+                }
+
+
+                function mycartdecrement(rowId){
+                    $.ajax({
+                        type: 'get',
+                        dataType: 'json',
+                        url: '/mycart/decrement/'+rowId,
+                        success: function(data) {
+                            mycart();
+                            miniCart();
+                        }
+                    })
+                }
+
+      </script>
+    <!-- cart increment -->
 
 
         @yield('footer_script')
