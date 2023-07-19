@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\blog\BlogController;
+use App\Http\Controllers\admin\blogcategory\BlogCategoryController;
 use App\Http\Controllers\admin\brand\BrandController;
 use App\Http\Controllers\admin\category\CategoryController;
 use App\Http\Controllers\admin\product\ProductController;
@@ -161,11 +163,27 @@ Route::controller(SliderController::class)->group(function(){
     Route::get('/delete/slider/{id}', 'delete_slider')->name('delete_slider');
 });
 
-
 });
 
 
 Route::controller(LanguageController::class)->group(function(){
     Route::get('/language/hindi', 'hindi')->name('hindi_language');
     Route::get('/language/english', 'english')->name('english_language');
+});
+
+Route::controller(BlogCategoryController::class)->group(function(){
+    Route::get('/blog_category',  'blog_category')->name('blog_category');
+    Route::post('/add_b_category',  'add_b_category')->name('add_b_category');
+    Route::get('/bc_del/{id}',  'bc_del')->name('bc_del');
+    Route::get('/bc_edit/{id}',  'bc_edit')->name('bc_edit');
+    Route::post('/update_b_category',  'update_b_category')->name('update_b_category');
+});
+
+Route::controller(BlogController::class)->group(function(){
+    Route::get('/add_b_post',  'add_b_post')->name('add_b_post');
+    Route::post('/post_store',  'post_store')->name('post_store');
+    Route::get('/view_blog_post',  'view_blog_post')->name('view_blog_post');
+    Route::get('/edit_blog_post/{id}',  'edit_blog_post')->name('edit_blog_post');
+    Route::post('/update_post',  'update_post')->name('update_post');
+
 });
