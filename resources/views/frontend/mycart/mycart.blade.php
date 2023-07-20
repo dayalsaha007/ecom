@@ -29,7 +29,6 @@
             <table class="table">
                 <thead>
                     <tr>
-
                         <th class="cart-description item">Image</th>
                         <th class="cart-product-name item">Product Name</th>
                         <th class="cart-sub-total item">Size</th>
@@ -40,7 +39,6 @@
                     </tr>
                 </thead><!-- /thead -->
 			<tbody id="mycart">
-
 
 			</tbody>
 		</table>

@@ -886,7 +886,6 @@
                         </div>
                         <div class="price">$${value.price}</div>
                     </td>
-
                     <td class="col-md-2">
                         <div class="price">${value.options.size ==  null
                             ? `<strong>....</strong>`
@@ -894,26 +893,20 @@
                             }
                         </div>
                     </td>
-
                     <td class="col-md-2">
                         <div class="price">${value.options.color}</div>
                     </td>
-
          <td class="col-md-2">
-
             ${value.qty > 1
                 ?
             `<button type="submit" id="${value.rowId}"  onclick="mycartdecrement(this.id)"
             class="btn btn-danger btn-sm" >-</button>`
             : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button>`
         }
-
                             <input type="text" value="${value.qty}" min="1" max="5" style="width:25px;" disabled >
             <button button="submit" id="${value.rowId}"  onclick="mycartincrement(this.id)"
             class="btn btn-primary btn-sm">+</button>
          </td>
-
-
                     <td class="col-md-2">
                         <div class="price">$${value.subtotal}</div>
                     </td>
@@ -949,7 +942,6 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-
                             if ($.isEmptyObject(data.error)) {
                                 Toast.fire({
                                     type: 'success',
