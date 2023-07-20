@@ -67,7 +67,7 @@ class CartController extends Controller
 
     function miniCartremove($rowId){
         Cart::remove($rowId);
-        return response()->json(['success', 'Product Removed from Cart']);
+        return response()->json(['success'=> 'Product Removed from Cart']);
     }
 
 
