@@ -39,7 +39,7 @@
                                       <td>
                                       <a href="{{ route('edit_blog_post', $blog->id) }}" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-                                         <a href="" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                                         <a href="{{ route('del_blog_post', $blog->id) }}" id="delete" class="btn btn-sm btn-danger"><i class="fa fa-ban" aria-hidden="true"></i></a>
                                      </td>
                                   </tr>
                                @endforeach

@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\category\CategoryController;
 use App\Http\Controllers\admin\product\ProductController;
 use App\Http\Controllers\admin\subcategory\SubcategoryController;
 use App\Http\Controllers\admin\subsubcategory\SubsubController;
+use App\Http\Controllers\frontend\blog\HomeblogController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\LanguageController;
@@ -185,5 +186,13 @@ Route::controller(BlogController::class)->group(function(){
     Route::get('/view_blog_post',  'view_blog_post')->name('view_blog_post');
     Route::get('/edit_blog_post/{id}',  'edit_blog_post')->name('edit_blog_post');
     Route::post('/update_post',  'update_post')->name('update_post');
+    Route::get('/del_blog_post/{id}',  'del_blog_post')->name('del_blog_post');
+});
+
+Route::controller(HomeblogController::class)->group(function(){
+    Route::get('/home_blog',  'home_blog')->name('home_blog');
+    Route::get('/blog_detail/{id}/{slug}', 'blog_detail');
+    Route::get('/cat_wise_post/{id}/{slug}', 'cat_wise_post');
 
 });
+

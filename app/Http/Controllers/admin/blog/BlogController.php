@@ -22,29 +22,29 @@ class BlogController extends Controller
 
     function post_store(Request $request){
 
-        $post_slug_eng = Str::lower(str_replace('','-',$request->post_title_eng));
-        $post_slug_hin = Str::lower(str_replace('','-',$request->post_title_hin));
+        $post_slug_eng = Str::lower(str_replace(' ','-',$request->post_title_eng));
+        $post_slug_hin = Str::lower(str_replace(' ','-',$request->post_title_hin));
 
-        $post_image =$request->post_image;
-        $ext = $post_image->getClientOriginalExtension();
-        $file = hexdec(uniqId()).'.'.$ext;
+        // $post_image =$request->post_image;
+        // $ext = $post_image->getClientOriginalExtension();
+        // $file = hexdec(uniqId()).'.'.$ext;
 
-        Image::make($post_image)->save(public_path('uploads/blog/'.$file));
+        // Image::make($post_image)->save(public_path('uploads/blog/'.$file));
 
 
-        Blog::insert([
-            'bc_id'=>$request->bc_id,
-            'post_title_eng'=>$request->post_title_eng,
-            'post_title_hin'=>$request->post_title_hin,
-            'post_slug_eng'=>$post_slug_eng,
-            'post_slug_hin'=>$post_slug_hin,
-            'post_image'=>$file,
-            'post_details_eng'=>$request->post_details_eng,
-            'post_details_hin'=>$request->post_details_hin,
-            'created_at'=>Carbon::now(),
-        ]);
+        // Blog::insert([
+        //     'bc_id'=>$request->bc_id,
+        //     'post_title_eng'=>$request->post_title_eng,
+        //     'post_title_hin'=>$request->post_title_hin,
+        //     'post_slug_eng'=>$post_slug_eng,
+        //     'post_slug_hin'=>$post_slug_hin,
+        //     'post_image'=>$file,
+        //     'post_details_eng'=>$request->post_details_eng,
+        //     'post_details_hin'=>$request->post_details_hin,
+        //     'created_at'=>Carbon::now(),
+        // ]);
 
-        return redirect()->route('view_blog_post')->with('post_add','Post added successfully');
+        // return redirect()->route('view_blog_post')->with('post_add','Post added successfully');
 
     }
 
@@ -70,8 +70,8 @@ class BlogController extends Controller
         $blog_id = $request->bpost_id;
         $blog = Blog::findorFail($blog_id);
 
-        $post_slug_eng = Str::lower(str_replace('','-',$request->post_title_eng));
-        $post_slug_hin = Str::lower(str_replace('','-',$request->post_title_hin));
+        $post_slug_eng = Str::lower(str_replace(' ','-',$request->post_title_eng));
+        $post_slug_hin = Str::lower(str_replace(' ','-',$request->post_title_hin));
 
         if($request->post_image != null ){
 
@@ -101,7 +101,6 @@ class BlogController extends Controller
         }
         else
         {
-
             $blog->update([
                 'bc_id'=>$request->bc_id,
                 'post_title_eng'=>$request->post_title_eng,
@@ -112,8 +111,21 @@ class BlogController extends Controller
                 'post_details_hin'=>$request->post_details_hin,
                 'updated_at'=>Carbon::now(),
             ]);
-            return redirect()->route('view_blog_post')->with('post_add','Post updated with Image');
+         return redirect()->route('view_blog_post')->with('post_add','Post updated with Image');
         }
+    }
+
+
+    function del_blog_post($id){
+
+        $blog = Blog::findorfail($id);
+        $del_path = public_path('uploads/blog/'.$blog->post_image);
+        unlink($del_path);
+
+        $blog->delete();
+
+    return redirect()->route('view_blog_post')->with('post_add','Post deleted successfully!');
+
 
     }
 

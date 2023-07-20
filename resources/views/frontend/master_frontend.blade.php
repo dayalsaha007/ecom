@@ -64,6 +64,7 @@
                                             class="icon fa fa-lock"></i>{{ session()->get('language') == 'hindi' ? 'लॉग इन/रजिस्टर' : 'Login/Register' }}</a>
                                 @endauth
                             </li>
+
                         </ul>
                     </div>
                     <!-- /.cnt-account -->
@@ -223,7 +224,7 @@
                         <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                             <div class="nav-outer">
                                 <ul class="nav navbar-nav">
-                                    <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown"
+                                    <li class="active dropdown yamm-fw"> <a href="" data-hover="dropdown"
                                             class="dropdown-toggle"
                                             data-toggle="dropdown">{{ session()->get('language') == 'hindi' ? 'घर' : 'Home' }}</a>
                                     </li>
@@ -249,7 +250,7 @@
                                                             @foreach ($subcategories as $sub_cat)
                                                                 <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                                                                     <a
-                                                                        href="{{ url('/subcategory/product/' . $sub_cat->id . '/' . $sub_cat->sc_slug_eng) }}">
+                                                                        href="{{ url('/subcategory/product/'. $sub_cat->id.'/'. $sub_cat->sc_slug_eng) }}">
                                                                         <h2 class="title">
                                                                             {{ session()->get('language') == 'hindi' ? $sub_cat->sc_name_hin : $sub_cat->sc_name_eng }}
                                                                         </h2>
@@ -283,7 +284,7 @@
                                             </ul>
                                         </li>
                                     @endforeach
-
+                                    <li class="dropdown"> <a href="{{ route('home_blog') }}">Blog</a> </li>
                                 </ul>
                                 <!-- /.navbar-nav -->
                                 <div class="clearfix"></div>
