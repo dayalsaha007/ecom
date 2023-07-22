@@ -259,6 +259,19 @@
 
                     <li class="treeview">
                         <a href="#">
+                            <i class="fa fa-product-hunt"></i>
+                            <span>Coupons</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('manage_coupons') }}"><i class="ti-more"></i>manage Coupons</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
                             <i class="fa fa-sliders"></i>
                             <span>Slider</span>
                             <span class="pull-right-container">

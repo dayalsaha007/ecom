@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\blog\BlogController;
 use App\Http\Controllers\admin\blogcategory\BlogCategoryController;
 use App\Http\Controllers\admin\brand\BrandController;
 use App\Http\Controllers\admin\category\CategoryController;
+use App\Http\Controllers\admin\coupon\CouponController;
 use App\Http\Controllers\admin\product\ProductController;
 use App\Http\Controllers\admin\subcategory\SubcategoryController;
 use App\Http\Controllers\admin\subsubcategory\SubsubController;
@@ -152,6 +153,14 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/multi/image/delete/{id}', 'mimg_del')->name('mimg_del');
     Route::get('/delete/p/{id}', 'delete_p')->name('delete_p');
 
+});
+
+Route::controller(CouponController::class)->group(function(){
+    Route::get('/manage_coupons', 'view_coupons')->name('manage_coupons');
+    Route::post('/coupon_store', 'coupon_store')->name('coupon_store');
+    Route::get('/edit_coupon/{id}', 'edit_coupon')->name('edit_coupon');
+    Route::post('/update_coupon', 'update_coupon')->name('update_coupon');
+    Route::get('/del_coupon/{id}', 'del_coupon')->name('del_coupon');
 });
 
 Route::controller(SliderController::class)->group(function(){
