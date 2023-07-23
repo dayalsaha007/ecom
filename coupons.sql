@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2023 at 03:32 PM
+-- Generation Time: Jul 23, 2023 at 07:11 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -18,44 +18,41 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ecom`
+-- Database: `jmt`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog_categories`
+-- Table structure for table `coupons`
 --
 
-CREATE TABLE `blog_categories` (
+CREATE TABLE `coupons` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `bc_name_eng` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bc_name_hin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bc_slug_eng` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bc_slug_hin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `expire_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `blog_categories`
+-- Dumping data for table `coupons`
 --
 
-INSERT INTO `blog_categories` (`id`, `bc_name_eng`, `bc_name_hin`, `bc_slug_eng`, `bc_slug_hin`, `created_at`, `updated_at`) VALUES
-(1, 'Tech', 'तकनीक', 'tech', 'तकनीक', NULL, NULL),
-(2, 'Job', 'काम', 'job', 'काम', NULL, NULL),
-(3, 'Game', 'खेल', 'game', 'खेल', NULL, NULL),
-(4, 'Trade', 'व्यापार', 'trade', 'व्यापार', NULL, NULL),
-(6, 'showbiz', 'शोबिज़', 'showbiz', 'शोबिज़', NULL, '2023-07-19 01:17:29');
+INSERT INTO `coupons` (`id`, `coupon_name`, `type`, `amount`, `expire_date`, `created_at`, `updated_at`) VALUES
+(1, 'Ekush', 1, 21, '2023-03-31', '2023-02-23 08:50:11', NULL),
+(6, 'cit', 2, 100, '2023-03-31', '2023-03-03 06:14:22', NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `blog_categories`
+-- Indexes for table `coupons`
 --
-ALTER TABLE `blog_categories`
+ALTER TABLE `coupons`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -63,9 +60,9 @@ ALTER TABLE `blog_categories`
 --
 
 --
--- AUTO_INCREMENT for table `blog_categories`
+-- AUTO_INCREMENT for table `coupons`
 --
-ALTER TABLE `blog_categories`
+ALTER TABLE `coupons`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 

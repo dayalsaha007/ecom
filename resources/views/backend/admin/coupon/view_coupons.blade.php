@@ -35,11 +35,11 @@
                                     <td>{{  Carbon\Carbon::parse($coupon->coupon_validity)->format('D, d F y') }} </td>
                                     <td>
 
-                                 @if($coupon->coupon_validity >= Carbon\Carbon::now()->format('y-m-d'))
+                         @if($coupon->coupon_validity >= Carbon\Carbon::now())
                             <span class="badge badge-pill badge-success">Valid</span>
-                                 @else
+                             @else
                                  <span class="badge badge-pill badge-danger">Invalid</span>
-                                 @endif
+                                @endif
 
                                     </td>
                                     <td>
