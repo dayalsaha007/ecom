@@ -868,11 +868,13 @@
                                                                         <button class="btn btn-primary cart-btn"
                                                                             type="button">Add to cart</button>
                                                                     </li>
-                                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                                    <li class="lnk wishlist">
+                                                                        <a data-toggle="tooltip"
                                                                             class="add-to-cart" href="detail.html"
                                                                             title="Wishlist"> <i
                                                                                 class="icon fa fa-heart"></i>
-                                                                        </a> </li>
+                                                                        </a>
+                                                                    </li>
                                                                     <li class="lnk"> <a data-toggle="tooltip"
                                                                             class="add-to-cart" href="detail.html"
                                                                             title="Compare"> <i class="fa fa-signal"
@@ -1114,9 +1116,12 @@
                                                             <button class="btn btn-primary cart-btn" type="button">Add to
                                                                 cart</button>
                                                         </li>
-                                                        <li class="lnk wishlist"> <a class="add-to-cart"
-                                                                href="detail.html" title="Wishlist"> <i
-                                                                    class="icon fa fa-heart"></i> </a> </li>
+
+                                                            <button class="btn btn-primary" class="add-to-cart" id="{{ $product->id }}"
+                                                                onclick="addToWishlist(this.id)" title="Wishlist"> <i
+                                                                    class="icon fa fa-heart"></i> </button>
+
+
                                                         <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                                 title="Compare"> <i class="fa fa-signal"
                                                                     aria-hidden="true"></i> </a> </li>
@@ -1371,127 +1376,49 @@
                         <h3 class="section-title">latest form blog</h3>
                         <div class="blog-slider-container outer-top-xs">
                             <div class="owl-carousel blog-slider custom-carousel">
-                                <div class="item">
-                                    <div class="blog-post">
-                                        <div class="blog-post-image">
-                                            <div class="image"> <a href="blog.html"><img
-                                                        src="{{ asset('frontend_assets') }}/assets/images/blog-post/post1.jpg"
-                                                        alt=""></a> </div>
-                                        </div>
-                                        <!-- /.blog-post-image -->
 
-                                        <div class="blog-post-info text-left">
-                                            <h3 class="name"><a href="#">Voluptatem accusantium doloremque
-                                                    laudantium</a></h3>
-                                            <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
-                                            <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et
-                                                dolore magnam aliquam quaerat voluptatem.</p>
-                                            <a href="#" class="lnk btn btn-primary">Read more</a>
-                                        </div>
-                                        <!-- /.blog-post-info -->
+                                @php
+                        $blogs = App\Models\Blog::latest()->get();
+                                @endphp
 
+                                @foreach ($blogs as $blog)
+                                    <div class="item">
+                                        <div class="blog-post">
+                                            <div class="blog-post-image">
+                                                <div class="image"> <a href="{{ url('blog_detail/'.$blog->id.'/'.$blog->post_slug_eng) }}"><img
+                                                            src="{{ asset('uploads/blog') }}/{{ $blog->post_image }}"
+                                                            alt=""></a> </div>
+                                            </div>
+                                            <!-- /.blog-post-image -->
+
+                                            <div class="blog-post-info text-left">
+                                                <h3 class="name">
+                                                <a href="{{ url('blog_detail/'.$blog->id.'/'.$blog->post_slug_eng) }}">
+
+                                                    @if (session()->get('language') == 'hindi')
+                                                    {{ $blog->post_title_hin }}
+                                                    @else
+                                                    {{ $blog->post_title_eng }}
+                                                    @endif
+
+                                                </a></h3>
+                                                <span class="date-time">{{ Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}</span>
+                                                <p class="text">
+                                                    @if (session()->get('language') == 'hindi')
+                                                    {!! Str::limit($blog->post_details_hin, 100) !!}
+                                                    @else
+                                                    {!! Str::limit($blog->post_details_eng, 100)  !!}
+                                                    @endif
+                                                </p>
+                                                <a href="{{ url('blog_detail/'.$blog->id.'/'.$blog->post_slug_eng) }}" class="lnk btn btn-primary">Read more</a>
+                                            </div>
+                                            <!-- /.blog-post-info -->
+                                        </div>
+                                        <!-- /.blog-post -->
                                     </div>
-                                    <!-- /.blog-post -->
-                                </div>
-                                <!-- /.item -->
+                                    <!-- /.item -->
+                                @endforeach
 
-                                <div class="item">
-                                    <div class="blog-post">
-                                        <div class="blog-post-image">
-                                            <div class="image"> <a href="blog.html"><img
-                                                        src="{{ asset('frontend_assets') }}/assets/images/blog-post/post2.jpg"
-                                                        alt=""></a> </div>
-                                        </div>
-                                        <!-- /.blog-post-image -->
-
-                                        <div class="blog-post-info text-left">
-                                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                    pariatur</a></h3>
-                                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                            <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et
-                                                dolore magnam aliquam quaerat voluptatem.</p>
-                                            <a href="#" class="lnk btn btn-primary">Read more</a>
-                                        </div>
-                                        <!-- /.blog-post-info -->
-
-                                    </div>
-                                    <!-- /.blog-post -->
-                                </div>
-                                <!-- /.item -->
-
-                                <!-- /.item -->
-
-                                <div class="item">
-                                    <div class="blog-post">
-                                        <div class="blog-post-image">
-                                            <div class="image"> <a href="blog.html"><img
-                                                        src="{{ asset('frontend_assets') }}/assets/images/blog-post/post1.jpg"
-                                                        alt=""></a> </div>
-                                        </div>
-                                        <!-- /.blog-post-image -->
-
-                                        <div class="blog-post-info text-left">
-                                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                    pariatur</a></h3>
-                                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                            <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                                voluptatem accusantium</p>
-                                            <a href="#" class="lnk btn btn-primary">Read more</a>
-                                        </div>
-                                        <!-- /.blog-post-info -->
-
-                                    </div>
-                                    <!-- /.blog-post -->
-                                </div>
-                                <!-- /.item -->
-
-                                <div class="item">
-                                    <div class="blog-post">
-                                        <div class="blog-post-image">
-                                            <div class="image"> <a href="blog.html"><img
-                                                        src="{{ asset('frontend_assets') }}/assets/images/blog-post/post2.jpg"
-                                                        alt=""></a> </div>
-                                        </div>
-                                        <!-- /.blog-post-image -->
-
-                                        <div class="blog-post-info text-left">
-                                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                    pariatur</a></h3>
-                                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                            <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                                voluptatem accusantium</p>
-                                            <a href="#" class="lnk btn btn-primary">Read more</a>
-                                        </div>
-                                        <!-- /.blog-post-info -->
-
-                                    </div>
-                                    <!-- /.blog-post -->
-                                </div>
-                                <!-- /.item -->
-
-                                <div class="item">
-                                    <div class="blog-post">
-                                        <div class="blog-post-image">
-                                            <div class="image"> <a href="blog.html"><img
-                                                        src="{{ asset('frontend_assets') }}/assets/images/blog-post/post1.jpg"
-                                                        alt=""></a> </div>
-                                        </div>
-                                        <!-- /.blog-post-image -->
-
-                                        <div class="blog-post-info text-left">
-                                            <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla
-                                                    pariatur</a></h3>
-                                            <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                                            <p class="text">Sed ut perspiciatis unde omnis iste natus error sit
-                                                voluptatem accusantium</p>
-                                            <a href="#" class="lnk btn btn-primary">Read more</a>
-                                        </div>
-                                        <!-- /.blog-post-info -->
-
-                                    </div>
-                                    <!-- /.blog-post -->
-                                </div>
-                                <!-- /.item -->
 
                             </div>
                             <!-- /.owl-carousel -->
@@ -1826,5 +1753,5 @@
 
 
 
-            @include('frontend.brand_carosel')
+     @include('frontend.brand_carosel')
         @endsection

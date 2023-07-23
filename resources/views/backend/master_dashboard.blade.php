@@ -259,6 +259,19 @@
 
                     <li class="treeview">
                         <a href="#">
+                            <i class="fa fa-product-hunt"></i>
+                            <span>Coupons</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('manage_coupons') }}"><i class="ti-more"></i>manage Coupons</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
                             <i class="fa fa-sliders"></i>
                             <span>Slider</span>
                             <span class="pull-right-container">
@@ -266,8 +279,22 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{ route('view_slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+                        <li><a href="{{ route('view_slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+                        </ul>
+                    </li>
 
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-sliders"></i>
+                            <span>Manage Blog Post</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('blog_category') }}"><i class="ti-more"></i>Add Blog Category</a></li>
+                            <li><a href="{{ route('add_b_post') }}"><i class="ti-more"></i>Add Blog Post</a></li>
+                            <li><a href="{{ route('view_blog_post') }}"><i class="ti-more"></i>View Blog Post</a></li>
                         </ul>
                     </li>
 
@@ -605,6 +632,9 @@
 
     <!----Tagsinput--->
     <script src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
+
+    <!----tinyMc--->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
     <!----Ckeditor--->
     <script src="{{ asset('backend_assets') }}/js/ckeditor.js"></script>

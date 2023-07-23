@@ -1,19 +1,26 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\blog\BlogController;
+use App\Http\Controllers\admin\blogcategory\BlogCategoryController;
 use App\Http\Controllers\admin\brand\BrandController;
 use App\Http\Controllers\admin\category\CategoryController;
+use App\Http\Controllers\admin\coupon\CouponController;
 use App\Http\Controllers\admin\product\ProductController;
 use App\Http\Controllers\admin\subcategory\SubcategoryController;
 use App\Http\Controllers\admin\subsubcategory\SubsubController;
+use App\Http\Controllers\frontend\blog\HomeblogController;
+use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\slider\SliderController;
+use App\Http\Controllers\user\MycartController;
+use App\Http\Controllers\user\WishlistController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin;
 use App\Models\Subcategory;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +60,34 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/product/view/modal/{id}', 'productviewajax');
 
 });
+
+Route::controller(CartController::class)->group(function(){
+    Route::post('/cart/data/store/{p_id}', 'addToCart');
+    Route::get('/product/mini/cart/', 'addminiCart');
+    Route::get('/minicart/product_remove/{rowId}', 'miniCartremove');
+    Route::post('/add_to_wishlist/{p_id}', 'addToWishlist');
+});
+
+
+ Route::controller(MycartController::class)->group(function(){
+    Route::get('/mycart', 'mycart')->name('mycart');
+    Route::get('/show_mycart', 'show_mycart');
+    Route::get('/mycart/remove/{rowId}', 'mycart_remove');
+    Route::get('/mycart/increment/{rowId}', 'mycartincrement');
+    Route::get('/mycart/decrement/{rowId}', 'mycartdecrement');
+    });
+
+
+
+Route::middleware('wishlist','auth')->group(function(){
+    Route::controller(WishlistController::class)->group(function(){
+    Route::get('/wishlist', 'wishlist')->name('wishlist');
+    Route::get('/get_wishlist/product/', 'get_wishlist_product');
+    Route::get('/wishlist/remove/{id}', 'wishlist_remove');
+    });
+
+});
+
 
 Route::controller(AdminController::class)->group(function(){
 
@@ -120,6 +155,14 @@ Route::controller(ProductController::class)->group(function(){
 
 });
 
+Route::controller(CouponController::class)->group(function(){
+    Route::get('/manage_coupons', 'view_coupons')->name('manage_coupons');
+    Route::post('/coupon_store', 'coupon_store')->name('coupon_store');
+    Route::get('/edit_coupon/{id}', 'edit_coupon')->name('edit_coupon');
+    Route::post('/update_coupon', 'update_coupon')->name('update_coupon');
+    Route::get('/del_coupon/{id}', 'del_coupon')->name('del_coupon');
+});
+
 Route::controller(SliderController::class)->group(function(){
     Route::get('/view/slider', 'view_slider')->name('view_slider');
     Route::post('/store/slider', 'store_slider')->name('store_slider');
@@ -130,7 +173,6 @@ Route::controller(SliderController::class)->group(function(){
     Route::get('/delete/slider/{id}', 'delete_slider')->name('delete_slider');
 });
 
-
 });
 
 
@@ -138,3 +180,28 @@ Route::controller(LanguageController::class)->group(function(){
     Route::get('/language/hindi', 'hindi')->name('hindi_language');
     Route::get('/language/english', 'english')->name('english_language');
 });
+
+Route::controller(BlogCategoryController::class)->group(function(){
+    Route::get('/blog_category',  'blog_category')->name('blog_category');
+    Route::post('/add_b_category',  'add_b_category')->name('add_b_category');
+    Route::get('/bc_del/{id}',  'bc_del')->name('bc_del');
+    Route::get('/bc_edit/{id}',  'bc_edit')->name('bc_edit');
+    Route::post('/update_b_category',  'update_b_category')->name('update_b_category');
+});
+
+Route::controller(BlogController::class)->group(function(){
+    Route::get('/add_b_post',  'add_b_post')->name('add_b_post');
+    Route::post('/post_store',  'post_store')->name('post_store');
+    Route::get('/view_blog_post',  'view_blog_post')->name('view_blog_post');
+    Route::get('/edit_blog_post/{id}',  'edit_blog_post')->name('edit_blog_post');
+    Route::post('/update_post',  'update_post')->name('update_post');
+    Route::get('/del_blog_post/{id}',  'del_blog_post')->name('del_blog_post');
+});
+
+Route::controller(HomeblogController::class)->group(function(){
+    Route::get('/home_blog',  'home_blog')->name('home_blog');
+    Route::get('/blog_detail/{id}/{slug}', 'blog_detail');
+    Route::get('/cat_wise_post/{id}/{slug}', 'cat_wise_post');
+
+});
+

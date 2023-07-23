@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Image;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 
 class SliderController extends Controller
