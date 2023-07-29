@@ -117,7 +117,6 @@ class ShippingareaController extends Controller
     function division_to_district($division_id){
         $district_id = Shipdistrict::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
         return json_encode($district_id);
-
     }
 
     function store_state(Request $request){
@@ -129,6 +128,37 @@ class ShippingareaController extends Controller
             'created_at'=>Carbon::now(),
         ]);
         return redirect()->route('view_state')->with('sd', 'state added successfully!');
+    }
+
+    function edit_state($id){
+        $shipstate = Shipstate::findorFail($id);
+        $divisions = ShipDivision::latest()->get();
+        $districts = Shipdistrict::latest()->get();
+        return view('backend.admin.shippingarea.edit_state', [
+            'divisions'=>$divisions,
+            'districts'=>$districts,
+            'shipstate'=>$shipstate,
+        ]);
+
+    }
+
+    function update_state(Request $request){
+            $state_id = $request->state_id;
+
+            Shipstate::findorFail($state_id)->update([
+                'division_id'=>$request->division_id,
+                'district_id'=>$request->district_id,
+                'state_name'=>$request->state_name,
+                'created_at'=>Carbon::now(),
+            ]);
+            return redirect()->route('view_state')->with('sd', 'state Updated successfully!');
+
+    }
+
+    function del_state($id){
+        $state = Shipstate::findorFail($id);
+        $state->delete();
+        return redirect()->route('view_state')->with('sd', 'state deleted successfully!');
     }
 
 

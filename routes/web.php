@@ -191,6 +191,9 @@ Route::controller(ShippingareaController::class)->group(function(){
     Route::get('/view_state', 'view_state')->name('view_state');
     Route::post('/store_state', 'store_state')->name('store_state');
     Route::get('/division_to_district/ajax/{division_id}', 'division_to_district');
+    Route::post('/update_state', 'update_state')->name('update_state');
+    Route::get('/edit_state/{id}', 'edit_state')->name('edit_state');
+    Route::get('/del_state/{id}', 'del_state')->name('del_state');
 });
 
 

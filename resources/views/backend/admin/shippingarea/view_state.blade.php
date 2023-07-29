@@ -36,10 +36,10 @@
                                         <td>{{ $state['rel_to_district']['district_name'] }}</td>
                                         <td>{{ $state->state_name }}</td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-info"><i
+                                            <a href="{{ route('edit_state', $state->id) }}" class="btn btn-sm btn-info"><i
                                                 class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-                                <a href="" id="delete" class="btn btn-sm btn-danger"><i
+                                <a href="{{ route('del_state', $state->id) }}" id="delete" class="btn btn-sm btn-danger"><i
                                                 class="fa fa-ban" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
@@ -115,7 +115,6 @@
 </script>
 
 <script>
-
     $(document).ready(function(){
         $('select[name="division_id"]').on('change', function(){
             var division_id = $(this).val();
@@ -139,14 +138,9 @@
             {
                 alert('danger');
             }
-
-
-
         });
 
     });
-
-
 </script>
 
 @endsection
