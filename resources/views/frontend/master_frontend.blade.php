@@ -991,6 +991,65 @@
       </script>
     <!-- cart increment -->
 
+    <!-- Coupon Apply start -->
+        <script type="text/javascript">
+            function applyCoupon(){
+                var coupon_name = $('#coupon_name').val();
+
+                $.ajax({
+                    type:"POST",
+                    url:"{{ url('/applycoupon') }}",
+                    dataType:"json",
+                    data:{coupon_name:coupon_name},
+                    success:function(data){
+
+                        const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            if ($.isEmptyObject(data.error)) {
+                                Toast.fire({
+                                    type: 'success',
+                                    icon: 'success',
+                                    title: data.success
+                                });
+                            } else {
+                                Toast.fire({
+                                    type: 'error',
+                                    icon: 'error',
+                                    title: data.error
+                                });
+                            }
+
+                    }
+
+                });
+            }
+
+            function couponCalculation(){
+
+                    $.ajax({
+                        type:"GET",
+                        dataType:"json",
+                        url: "{{ url('coupon-calculation') }}"
+                        success:function(data){
+
+                        }
+                    });
+
+            }
+
+
+
+
+        </script>
+    <!-- Coupon Apply close -->
+
+
+
 
         @yield('footer_script')
 

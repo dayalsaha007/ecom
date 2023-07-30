@@ -44,7 +44,81 @@
 		</table>
 	</div>
 </div>
+
+
+<div class="col-md-2 col-sm-12 estimate-ship-tax"></div>
+
+<!---Coupon code start---->
+<div class="col-md-5 col-sm-12 estimate-ship-tax">
+    <table class="table">
+
+        @if(Session::has('coupon'))
+
+
+        @else
+
+            <thead>
+                <tr>
+                    <th>
+                        <span class="estimate-title">Coupon Code</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                    <input type="text" id="coupon_name" name="coupon_name" class="form-control unicase-form-control text-input">
+                            </div>
+                            <div class="clearfix pull-right">
+                                <button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupon()" >APPLY COUPON</button>
+                            </div>
+                        </td>
+                    </tr>
+            </tbody><!-- /tbody -->
+        @endif
+
+
+    </table><!-- /table -->
+</div><!-- /.estimate-ship-tax -->
+
+<!---Coupon code close---->
+
+<!---Checkout Filed Started---->
+<div class="col-md-5 col-sm-12 cart-shopping-total">
+    <table class="table">
+        <thead id="couponCalField">
+            <tr>
+                <th>
+                    <div class="cart-sub-total">
+                        Subtotal<span class="inner-left-md">$600.00</span>
+                    </div>
+                    <div class="cart-grand-total">
+                        Grand Total<span class="inner-left-md">$600.00</span>
+                    </div>
+                </th>
+            </tr>
+        </thead><!-- /thead -->
+        <tbody>
+                <tr>
+                    <td>
+                        <div class="cart-checkout-btn pull-right">
+             <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
+                        </div>
+                    </td>
+                </tr>
+        </tbody><!-- /tbody -->
+    </table><!-- /table -->
+</div><!-- /.cart-shopping-total -->
+<!---Checkout Filed Started---->
+
+
+
 </div><!-- /.row -->
+
+
+
+
 
 </div>
 </div><!-- /.sigin-in-->
