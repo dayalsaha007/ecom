@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\brand\BrandController;
 use App\Http\Controllers\admin\category\CategoryController;
 use App\Http\Controllers\admin\coupon\CouponController;
 use App\Http\Controllers\admin\product\ProductController;
+use App\Http\Controllers\admin\shippingarea\ShippingareaController;
 use App\Http\Controllers\admin\subcategory\SubcategoryController;
 use App\Http\Controllers\admin\subsubcategory\SubsubController;
 use App\Http\Controllers\frontend\blog\HomeblogController;
@@ -176,6 +177,29 @@ Route::controller(SliderController::class)->group(function(){
     Route::get('/active/slider/{id}', 'active_slider')->name('active_slider');
     Route::get('/delete/slider/{id}', 'delete_slider')->name('delete_slider');
 });
+
+
+Route::controller(ShippingareaController::class)->group(function(){
+    Route::get('/view_division', 'view_division')->name('view_division');
+    Route::post('/store_division', 'store_division')->name('store_division');
+    Route::post('/update_division', 'update_division')->name('update_division');
+    Route::get('/del_division/{id}', 'del_division')->name('del_division');
+    Route::get('/edit_division/{id}', 'edit_division')->name('edit_division');
+
+    Route::get('/view_district', 'view_district')->name('view_district');
+    Route::get('/edit_district/{id}', 'edit_district')->name('edit_district');
+    Route::post('/store_district', 'store_district')->name('store_district');
+    Route::post('/update_district', 'update_district')->name('update_district');
+    Route::get('/del_district/{id}', 'del_district')->name('del_district');
+
+    Route::get('/view_state', 'view_state')->name('view_state');
+    Route::post('/store_state', 'store_state')->name('store_state');
+    Route::get('/division_to_district/ajax/{division_id}', 'division_to_district');
+    Route::post('/update_state', 'update_state')->name('update_state');
+    Route::get('/edit_state/{id}', 'edit_state')->name('edit_state');
+    Route::get('/del_state/{id}', 'del_state')->name('del_state');
+});
+
 
 });
 

@@ -272,6 +272,21 @@
 
                     <li class="treeview">
                         <a href="#">
+                            <i class="fa fa-product-hunt"></i>
+                            <span>Manage Shipping</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                 <li><a href="{{ route('view_division') }}"><i class="ti-more"></i>Ship Division</a></li>
+                 <li><a href="{{ route('view_district') }}"><i class="ti-more"></i>Ship District</a></li>
+                 <li><a href="{{ route('view_state') }}"><i class="ti-more"></i>Ship state</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
                             <i class="fa fa-sliders"></i>
                             <span>Slider</span>
                             <span class="pull-right-container">
