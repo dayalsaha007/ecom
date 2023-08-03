@@ -110,6 +110,10 @@
         toastr.success("{{ Session::get('cus_logout') }}")
         @endif
 
+        @if(Session::has('cs'))
+        toastr.warning("{{ Session::get('cs') }}")
+        @endif
+
     </script>
 
 @endsection

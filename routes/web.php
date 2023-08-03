@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\subcategory\SubcategoryController;
 use App\Http\Controllers\admin\subsubcategory\SubsubController;
 use App\Http\Controllers\frontend\blog\HomeblogController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\checkout\CheckoutController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\ProfileController;
@@ -82,6 +83,9 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/mycart/decrement/{rowId}', 'mycartdecrement');
     });
 
+    Route::controller(CheckoutController::class)->group(function(){
+            Route::get('/checkout/store', 'checkout_store')->name('checkout_store');
+    });
 
 
 Route::middleware('wishlist','auth')->group(function(){
