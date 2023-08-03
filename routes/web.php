@@ -180,7 +180,7 @@ Route::controller(SliderController::class)->group(function(){
 
 Route::controller(ShippingareaController::class)->group(function(){
     Route::get('/view_division', 'view_division')->name('view_division');
-    Route::post('/store_division', 'store_division')->name('store_division');
+    Route::post('/store_divisions', 'store_division')->name('store_division');
     Route::post('/update_division', 'update_division')->name('update_division');
     Route::get('/del_division/{id}', 'del_division')->name('del_division');
     Route::get('/edit_division/{id}', 'edit_division')->name('edit_division');
