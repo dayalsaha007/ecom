@@ -53,7 +53,7 @@
                     <h4>Add Division</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('store_division') }}" method="POST">
+                    <form action="{{ route('store_divisions') }}" method="POST">
                         @csrf
 
                         <label class="my-1">Division Name</label>
