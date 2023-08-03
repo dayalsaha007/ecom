@@ -44,6 +44,68 @@
 		</table>
 	</div>
 </div>
+
+
+
+<div class="col-md-2 col-sm-12 estimate-ship-tax"></div>
+
+<!---Coupon code start---->
+<div class="col-md-5 col-sm-12 estimate-ship-tax">
+
+
+        @if(Session::has('coupon'))
+
+
+        @else
+        <table class="table" id="couponField">
+            <thead>
+                <tr>
+                    <th>
+                        <span class="estimate-title">Coupon Code</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                    <input type="text" id="coupon_name" class="form-control unicase-form-control text-input" id="coupon_name" >
+                            </div>
+                            <div class="clearfix pull-right">
+                                <button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupon()" >APPLY COUPON</button>
+                            </div>
+                        </td>
+                    </tr>
+            </tbody><!-- /tbody -->
+        </table><!-- /table -->
+        @endif
+
+
+
+</div><!-- /.estimate-ship-tax -->
+
+<!---Coupon code close---->
+
+<!---Checkout Filed Started---->
+<div class="col-md-5 col-sm-12 cart-shopping-total">
+    <table class="table">
+        <thead id="couponCalField">
+
+        </thead><!-- /thead -->
+        <tbody>
+                <tr>
+                    <td>
+                        <div class="cart-checkout-btn pull-right">
+             <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
+                        </div>
+                    </td>
+                </tr>
+        </tbody><!-- /tbody -->
+    </table><!-- /table -->
+</div><!-- /.cart-shopping-total -->
+<!---Checkout Filed Started---->
+
+
 </div><!-- /.row -->
 
 </div>

@@ -66,6 +66,10 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/product/mini/cart/', 'addminiCart');
     Route::get('/minicart/product_remove/{rowId}', 'miniCartremove');
     Route::post('/add_to_wishlist/{p_id}', 'addToWishlist');
+    Route::post('/applycoupon', 'applycoupon');
+    Route::get('/coupon-calculation', 'couponcalculation');
+    Route::post('/coupon-remove', 'couponremove');
+
 });
 
 
