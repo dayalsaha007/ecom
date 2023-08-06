@@ -4,6 +4,7 @@
 
 @section('page_header')
     Admin | Checkout
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endsection
 
 
@@ -28,75 +29,78 @@
                         <!-- checkout-step-01  -->
                         <div class="panel panel-default checkout-step-01">
 
-
-
                             <div id="collapseOne" class="panel-collapse collapse in">
 
                                 <!-- panel-body  -->
                                 <div class="panel-body">
                                     <div class="row">
-
-                                        <!-- guest-login -->
                                         <div class="col-md-6 col-sm-6 guest-login">
-                                            <h4 class="checkout-subtitle">Guest or Register Login</h4>
-                                            <p class="text title-tag-line">Register with us for future convenience:</p>
+                                            <h2 class="checkout-subtitle"><strong>Shipping Address</strong></h2>
 
-                                            <!-- radio-form  -->
-                                            <form class="register-form" role="form">
-                                                <div class="radio radio-checkout-unicase">
-                                                    <input id="guest" type="radio" name="text" value="guest"
-                                                        checked>
-                                                    <label class="radio-button guest-check" for="guest">Checkout as
-                                                        Guest</label>
-                                                    <br>
-                                                    <input id="register" type="radio" name="text" value="register">
-                                                    <label class="radio-button" for="register">Register</label>
-                                                </div>
-                                            </form>
-                                            <!-- radio-form  -->
+                                            <!-- checkout-form  -->
+                                     <form class="register-form" role="form" action="{{ route('checkout.store') }}" method="POST">
+                                            @csrf
+                                        <div class="form-group">
+                                            <label class="info-title" >Shipping Name<span>*</span></label>
+                                            <input type="text" name="shipping_name" value="{{ Auth::user()->name }}" class="form-control unicase-form-control text-input" placeholder="">
+                                        </div>
 
-                                            <h4 class="checkout-subtitle outer-top-vs">Register and save time</h4>
-                                            <p class="text title-tag-line ">Register with us for future convenience:</p>
+                                        <div class="form-group">
+                                            <label class="info-title" >Shipping Email<span>*</span></label>
+                                            <input type="text" name="shipping_email" value="{{ Auth::user()->email }}" class="form-control unicase-form-control text-input" placeholder="">
+                                        </div>
 
-                                            <ul class="text instruction inner-bottom-30">
-                                                <li class="save-time-reg">- Fast and easy check out</li>
-                                                <li>- Easy access to your order history and status</li>
-                                            </ul>
+                                        <div class="form-group">
+                                            <label class="info-title" >Shipping mobile<span>*</span></label>
+                                            <input type="text" name="shipping_mobile" class="form-control unicase-form-control text-input" placeholder="">
+                                        </div>
 
-                                            <button type="submit"
-                                                class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Continue</button>
+                                        <div class="form-group">
+                                            <label class="info-title" >Post Code<span>*</span></label>
+                                            <input type="text" name="post_code" class="form-control unicase-form-control text-input" placeholder="">
+                                        </div>
+
                                         </div>
                                         <!-- guest-login -->
 
                                         <!-- already-registered-login -->
                                         <div class="col-md-6 col-sm-6 already-registered-login">
-                                            <h4 class="checkout-subtitle">Already registered?</h4>
-                                            <p class="text title-tag-line">Please log in below:</p>
-                                            <form class="register-form" role="form">
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Email Address
-                                                        <span>*</span></label>
-                                                    <input type="email"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputPassword1">Password
-                                                        <span>*</span></label>
-                                                    <input type="password"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputPassword1" placeholder="">
-                                                    <a href="#" class="forgot-password">Forgot your Password?</a>
-                                                </div>
-                                                <button type="submit"
-                                                    class="btn-upper btn btn-primary checkout-page-button">Login</button>
-                                            </form>
-                                        </div>
+
+                                                    <div class="form-group">
+                                                        <label class="info-title" >Select Division<span>*</span></label>
+                                                        <select name="division_id" class="form-control" >
+                                                            <option value="">-Select Division-</option>
+                                                            @foreach ($divisions as $division)
+                                                                <option value="{{ $division->id }}">{{ $division->division_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                      </div>
+
+                                                      <div class="form-group">
+                                                        <label class="info-title" >Select District<span>*</span></label>
+                                                        <select name="district_id" id="district_id" class="form-control" >
+                                                            <option value="">-Select District-</option>
+                                                        </select>
+                                                      </div>
+
+                                                      <div class="form-group">
+                                                        <label class="info-title" >Select State<span>*</span></label>
+                                                        <select name="state_id" id="state_id" class="form-control" >
+                                                            <option value="">-Select state-</option>
+                                                        </select>
+                                                      </div>
+
+                                                      <div class="form-group">
+                                                        <label class="info-title" >Notes<span>*</span></label>
+                                                        <textarea name="notes" class="form-control" id="" cols="30" rows="5"></textarea>
+                                                    </div>
                                         <!-- already-registered-login -->
 
                                     </div>
                                 </div>
-                                <!-- panel-body  -->
+                            </div>
+
+                        <!-- panel-body  -->
 
                             </div><!-- row -->
                         </div>
@@ -161,12 +165,107 @@
                     </div>
              </div>
 
+             <div class="col-md-4">
+                <div class="checkout-progress-sidebar ">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="unicase-checkout-title">Payment Method</h4>
+                            </div>
+                            <div class="">
+                                <ul class="nav nav-checkout-progress list-unstyled">
 
-            </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="my-1">Stripe</label>
+                                            <input type="radio" name="payment_method" value="stripe">
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="my-1">Card</label>
+                                            <input type="radio" name="payment_method" value="card" >
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="my-1">Cash</label>
+                                            <input type="radio" name="payment_method" value="cash" >
+                                        </div>
+
+
+                                        <button type="submit"
+                                        class="btn-upper btn btn-primary checkout-page-button" style="margin-top:12px;margin-left:10px" >Proced To Payment</button>
+
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         </div>
+
+        </form>
+        </div>
+
+
+
         </div>
     </div>
 @endsection
 
 
 @section('footer_script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('select[name="division_id"]').on('change', function(){
+                var division_id = $(this).val();
+
+                if(division_id){
+
+                    $.ajax({
+                        type:"GET",
+                        dataType:"json",
+                        url:"{{ url('division_to_district') }}/"+division_id,
+                        success:function(data){
+                            $('select[name="state_id"]').empty();
+                            $('select[name="district_id"]').empty();
+                            $('select[name="district_id"]').append('<option value="">-Select state-</option>');
+                            $.each(data, function(key, value){
+                                $('select[name="district_id"]').append('<option value="'+ value.id +'">'+ value.district_name +'</option>');
+                            });
+                        }
+                    });
+                }
+
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready( function(){
+            $('select[name="district_id"]').on('change', function(){
+                    var district_id = $(this).val();
+
+                   if(district_id){
+
+                    $.ajax({
+                        type:"GET",
+                        url:"{{ url('district_to_state') }}/"+district_id,
+                        dataType:"json",
+                        success:function(data){
+
+                            $('select[name="state_id"]').empty();
+                            $.each(data, function(key, value){
+                                $('select[name="state_id"]').append('<option value="'+ value.id +'">'+ value.state_name +'</option>');
+                            });
+
+                        },
+                    });
+
+                   }
+            });
+        });
+    </script>
+
 @endsection

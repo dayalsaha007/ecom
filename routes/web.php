@@ -84,7 +84,10 @@ Route::controller(CartController::class)->group(function(){
     });
 
     Route::controller(CheckoutController::class)->group(function(){
-            Route::get('/checkout/store', 'checkout_store')->name('checkout_store');
+            Route::get('/checkout', 'checkout')->name('checkout');
+            Route::get('/division_to_district/{division_id}', 'division_to_district');
+            Route::get('/district_to_state/{district_id}', 'district_to_state');
+            Route::post('/checkout/store', 'checkout_store')->name('checkout.store');
     });
 
 
