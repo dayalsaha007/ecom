@@ -15,9 +15,11 @@ use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\checkout\CheckoutController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\LanguageController;
+use App\Http\Controllers\frontend\payment\StripePaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\slider\SliderController;
 use App\Http\Controllers\user\MycartController;
+use App\Http\Controllers\user\StripeController;
 use App\Http\Controllers\user\WishlistController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin;
@@ -87,15 +89,18 @@ Route::controller(CartController::class)->group(function(){
             Route::get('/checkout', 'checkout')->name('checkout');
             Route::get('/division_to_district/{division_id}', 'division_to_district');
             Route::get('/district_to_state/{district_id}', 'district_to_state');
-            Route::post('/checkout/store', 'checkout_store')->name('checkout.store');
+            Route::post('/checkout/store', 'checkout_store')->name('checkout.store')->middleware('auth');
     });
-
 
 Route::middleware('wishlist','auth')->group(function(){
     Route::controller(WishlistController::class)->group(function(){
     Route::get('/wishlist', 'wishlist')->name('wishlist');
     Route::get('/get_wishlist/product/', 'get_wishlist_product');
     Route::get('/wishlist/remove/{id}', 'wishlist_remove');
+    });
+
+    Route::controller(StripeController::class)->group(function(){
+        Route::post('stripe/order', 'stripe_order')->name('stripe.order')->middleware('wishlist');
     });
 
 });

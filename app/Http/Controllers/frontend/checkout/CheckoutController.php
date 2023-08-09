@@ -51,7 +51,6 @@ class CheckoutController extends Controller
 
             $state = Shipstate::where('district_id', $district_id)->latest()->get();
             return json_encode($state);
-
         }
 
         function checkout_store(Request $request){
@@ -65,9 +64,11 @@ class CheckoutController extends Controller
             $data['division_id'] = $request->division_id;
             $data['district_id'] = $request->district_id;
             $data['state_id'] = $request->state_id;
+            $cartTotal = Cart::total();
+
 
             if($request->payment_method == 'stripe'){
-                return view('frontend.payment.stripe.stripe', [  'data'=>$data,  ]);
+                return view( 'frontend.payment.stripe.stripe', ['data'=>$data, 'cartTotal'=>$cartTotal,]);
             }
             elseif($request->payment_method == 'card'){
                 return "card";
