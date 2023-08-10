@@ -1147,11 +1147,7 @@
 <!-- Coupon Removed-->
 
 
-
-
-
-
-        @yield('footer_script')
+ @yield('footer_script')
 
 
 </body>

@@ -1753,5 +1753,16 @@
 
 
 
-     @include('frontend.brand_carosel')
+        @include('frontend.brand_carosel')
+
+        @endsection
+
+        @section('footer_script')
+
+        <script>
+            @if (Session::has('os'))
+            toastr.success("{{ Session::get('os') }}");
+        @endif
+        </script>
+
         @endsection
