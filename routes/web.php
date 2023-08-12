@@ -50,8 +50,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-
 Route::controller(FrontendController::class)->group(function(){
 
     Route::get('/', 'index')->name('index')->middleware('cache.headers:private;max_age=3600');

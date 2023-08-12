@@ -19,7 +19,7 @@
                                         placeholder="Enter Your Email">
                                 </div>
 
-                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Send Mail</button>
                             </form>
                         </div>
                     </div>

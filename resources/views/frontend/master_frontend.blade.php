@@ -1014,7 +1014,10 @@
                 data:{coupon_name:coupon_name},
                 success:function(data){
                     couponCalculation();
-                 $('#couponField').hide();
+                 if(data.validity == true){
+                     $('#couponField').hide();
+                 }
+
 
                     const Toast = Swal.mixin({
                             toast: true,
