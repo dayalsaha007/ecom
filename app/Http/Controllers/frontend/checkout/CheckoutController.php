@@ -75,7 +75,7 @@ class CheckoutController extends Controller
             }
             else
             {
-                return "cash";
+            return view( 'frontend.payment.cash.cash', ['data'=>$data, 'cartTotal'=>$cartTotal,]);
             }
         }
 

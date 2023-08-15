@@ -4,11 +4,11 @@
 
 @section('page_header')
     Admin | Checkout
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endsection
 
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
     <div class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-inner">

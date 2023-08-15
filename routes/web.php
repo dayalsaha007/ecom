@@ -13,11 +13,13 @@ use App\Http\Controllers\admin\subsubcategory\SubsubController;
 use App\Http\Controllers\frontend\blog\HomeblogController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\checkout\CheckoutController;
+use App\Http\Controllers\frontend\frontend_dashboard\Frontend_DashboardController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\frontend\payment\StripePaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\slider\SliderController;
+use App\Http\Controllers\user\CashController;
 use App\Http\Controllers\user\MycartController;
 use App\Http\Controllers\user\StripeController;
 use App\Http\Controllers\user\WishlistController;
@@ -38,9 +40,14 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 */
 
 
-Route::get('/dashboard', function () {
-    return view('frontend.admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+    Route::controller(Frontend_DashboardController::class)->group(function(){
+        Route::get('/dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
+        Route::get('/my_order', 'my_order')->middleware(['auth', 'verified'])->name('my_order');
+        Route::get('/order_details/{order_id}', 'order_details')->middleware(['auth', 'verified'])->name('order_details');
+
+    });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -98,8 +105,13 @@ Route::middleware('wishlist','auth')->group(function(){
     });
 
     Route::controller(StripeController::class)->group(function(){
-        Route::post('stripe/order', 'stripe_order')->name('stripe.order')->middleware('wishlist');
+        Route::post('/stripe/order', 'stripe_order')->name('stripe.order')->middleware('wishlist');
     });
+
+    Route::controller(CashController::class)->group(function(){
+        Route::post('/cash/order', 'cash_order')->name('cash_order')->middleware('wishlist');
+    });
+
 
 });
 
