@@ -45,6 +45,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
         Route::get('/dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
         Route::get('/my_order', 'my_order')->middleware(['auth', 'verified'])->name('my_order');
         Route::get('/order_details/{order_id}', 'order_details')->middleware(['auth', 'verified'])->name('order_details');
+        Route::get('/invoice_download/{order_id}', 'invoice_download')->middleware(['auth', 'verified'])->name('invoice_download');
 
     });
 

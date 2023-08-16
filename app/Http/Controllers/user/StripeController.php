@@ -86,7 +86,7 @@ class StripeController extends Controller
                 'color' => $cart->options->color,
                 'size' => $cart->options->size,
                 'qty' => $cart->qty,
-                'price' => $cart->price,
+                'price' =>$cart->price,
                 'created_at' => Carbon::now(),
 
             ]);

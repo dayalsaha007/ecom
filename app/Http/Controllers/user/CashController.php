@@ -18,14 +18,12 @@ class CashController extends Controller
     public function cash_order (Request $request){
 
         if(Session::has('coupon')){
-            $total_amount = Session::get('coupon')['total_amount'];
+            $total_amount = session()->get('coupon')['total_amount'];
         }
         else
         {
             $total_amount = Cart::total();
         }
-
-
 
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
@@ -40,8 +38,6 @@ class CashController extends Controller
 
             'payment_type' => 'cod',
             'payment_method' => 'cod',
-
-
             'currency'=>'usd',
             'amount' => $total_amount,
 
