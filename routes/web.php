@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\blogcategory\BlogCategoryController;
 use App\Http\Controllers\admin\brand\BrandController;
 use App\Http\Controllers\admin\category\CategoryController;
 use App\Http\Controllers\admin\coupon\CouponController;
+use App\Http\Controllers\admin\order\OrderController;
 use App\Http\Controllers\admin\product\ProductController;
 use App\Http\Controllers\admin\shippingarea\ShippingareaController;
 use App\Http\Controllers\admin\subcategory\SubcategoryController;
@@ -222,6 +223,23 @@ Route::controller(ShippingareaController::class)->group(function(){
     Route::get('/edit_state/{id}', 'edit_state')->name('edit_state');
     Route::get('/del_state/{id}', 'del_state')->name('del_state');
 });
+
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('/pending/orders', 'pending_to_confirm')->name('pending_to_confirm');
+        Route::post('/update/pending/status', 'pending_order_status');
+
+        Route::get('/confirm/processing', 'confirm_to_processing')->name('confirm_to_processing');
+
+        Route::get('/processing/picked', 'processing_to_picked')->name('processing_to_picked');
+
+        Route::get('/picked/shipped', 'picked_to_shipped')->name('picked_to_shipped');
+
+        Route::get('/shipped/deliver', 'shipped_to_delivered')->name('shipped_to_delivered');
+
+        Route::get('/cancel/orders', 'cancel_orders')->name('cancel_orders');
+
+
+    });
 
 
 });

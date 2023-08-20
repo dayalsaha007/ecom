@@ -287,6 +287,23 @@
 
                     <li class="treeview">
                         <a href="#">
+                            <i class="fa fa-product-hunt"></i>
+                            <span>Manage Orders</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                <li><a href="{{ route('pending_to_confirm') }}"><i class="ti-more"></i>Pending Orders</a></li>
+                <li><a href="{{ route('confirm_to_processing') }}"><i class="ti-more"></i>Pending Orders</a></li>
+                <li><a href="{{ route('processing_to_shipped') }}"><i class="ti-more"></i>Pending Orders</a></li>
+                <li><a href="{{ route('shipped_to_delivered') }}"><i class="ti-more"></i>Pending Orders</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="treeview">
+                        <a href="#">
                             <i class="fa fa-sliders"></i>
                             <span>Slider</span>
                             <span class="pull-right-container">
@@ -297,6 +314,7 @@
                         <li><a href="{{ route('view_slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
                         </ul>
                     </li>
+
 
                     <li class="treeview">
                         <a href="#">
@@ -641,7 +659,7 @@
     <script src="{{ asset('backend_assets') }}/js/pages/dashboard.js"></script>
 
     <!----Datatable_js---->
-     <script src="{{ asset('backend_assets') }}/js/jquery.js"></script>
+     {{-- <script src="{{ asset('backend_assets') }}/js/jquery.js"></script> --}}
      <script src="{{ asset('backend_assets') }}/js/bootstrap5.min.js"></script>
     <script src="{{ asset('backend_assets') }}/js/dataTables.min.js"></script>
 
@@ -653,6 +671,9 @@
 
     <!----Ckeditor--->
     <script src="{{ asset('backend_assets') }}/js/ckeditor.js"></script>
+
+    <!----Axios---->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!----Sweet_Alert_2---->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

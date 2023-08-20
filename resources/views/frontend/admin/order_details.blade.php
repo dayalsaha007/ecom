@@ -92,6 +92,16 @@
                                   @endforeach
                                 </tbody>
                             </table>
+
+                            @if($orders->status !== "delivered")
+
+                            @else
+                                <form action="" method="POST" >
+                                    <label>Order Return Reasone</label>
+                                    <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+                                </form>
+                            @endif
+
                     </div>
                 </div>
             </div>
