@@ -31,7 +31,7 @@ class OrderController extends Controller
         return view('backend.admin.order.confirmed_orders', [
             'confirmed_orders'=>$confirmed_orders,
             ]);
-    }
+       }
 
 
     function processing_orders(){
@@ -64,7 +64,7 @@ class OrderController extends Controller
 
     function canceled_orders(){
         $cancel_orders = Order::where('status', 'canceled')->orderBy('id', 'DESC')->get();
-        return view('backend.admin.order.processing_to_picked', [
+        return view('backend.admin.order.canceled_orders', [
             'cancel_orders'=> $cancel_orders,
             ]);
     }

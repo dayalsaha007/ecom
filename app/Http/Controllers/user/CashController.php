@@ -51,13 +51,13 @@ class CashController extends Controller
         ]);
 
 
-        $invoice = Order::findorFail($order_id);
-        $data = [
-            'invoice_no' => $invoice->invoice_no,
-            'name' => $invoice->name,
-            'email' => $invoice->email,
-            'amount' => $total_amount,
-        ];
+        // $invoice = Order::findorFail($order_id);
+        // $data = [
+        //     'invoice_no' => $invoice->invoice_no,
+        //     'name' => $invoice->name,
+        //     'email' => $invoice->email,
+        //     'amount' => $total_amount,
+        // ];
 
 
         $carts = Cart::content();
