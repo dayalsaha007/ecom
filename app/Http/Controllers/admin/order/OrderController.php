@@ -26,35 +26,43 @@ class OrderController extends Controller
         ]);
     }
 
-    function confirm_to_processing(){
+    function confirmed_orders(){
+        $confirmed_orders = Order::where('status', 'confirmed')->orderBy('id', 'DESC')->get();
+        return view('backend.admin.order.confirmed_orders', [
+            'confirmed_orders'=>$confirmed_orders,
+            ]);
+    }
+
+
+    function processing_orders(){
         $processing_orders = Order::where('status', 'processing')->orderBy('id', 'DESC')->get();
-        return view('backend.admin.order.confirm_to_processing', [
+        return view('backend.admin.order.processing_orders', [
             'processing_orders'=>$processing_orders,
             ]);
     }
 
-    function processing_to_picked(){
+    function picked_orders(){
         $picked_orders = Order::where('status', 'picked')->orderBy('id', 'DESC')->get();
-        return view('backend.admin.order.processing_to_picked', [
+        return view('backend.admin.order.picked_orders', [
             'picked_orders'=>$picked_orders,
             ]);
     }
 
-    function picked_to_shipped(){
+    function shipped_orders(){
         $shipped_orders = Order::where('status', 'shipped')->orderBy('id', 'DESC')->get();
-        return view('backend.admin.order.picked_to_shipped', [
+        return view('backend.admin.order.shipped_orders', [
             'shipped_orders'=>$shipped_orders,
             ]);
     }
 
-    function shipped_to_delivered(){
+    function delivered_orders(){
         $delivered_orders = Order::where('status', 'delivered')->orderBy('id', 'DESC')->get();
-        return view('backend.admin.order.shipped_to_delivered', [
+        return view('backend.admin.order.delivered_orders', [
             'delivered_orders'=> $delivered_orders,
             ]);
     }
 
-    function cancel_orders(){
+    function canceled_orders(){
         $cancel_orders = Order::where('status', 'canceled')->orderBy('id', 'DESC')->get();
         return view('backend.admin.order.processing_to_picked', [
             'cancel_orders'=> $cancel_orders,

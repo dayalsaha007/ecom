@@ -294,10 +294,13 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                <li><a href="{{ route('pending_to_confirm') }}"><i class="ti-more"></i>Pending Orders</a></li>
-                <li><a href="{{ route('confirm_to_processing') }}"><i class="ti-more"></i>Pending Orders</a></li>
-                <li><a href="{{ route('processing_to_shipped') }}"><i class="ti-more"></i>Pending Orders</a></li>
-                <li><a href="{{ route('shipped_to_delivered') }}"><i class="ti-more"></i>Pending Orders</a></li>
+            <li><a href="{{ route('pending_to_confirm') }}"><i class="ti-more"></i>Pending Orders</a></li>
+            <li><a href="{{ route('confirmed_orders') }}"><i class="ti-more"></i>Confirmed Orders</a></li>
+            <li><a href="{{ route('processing_orders') }}"><i class="ti-more"></i>Processing Orders</a></li>
+            <li><a href="{{ route('picked_orders') }}"><i class="ti-more"></i>Picked Orders</a></li>
+            <li><a href="{{ route('shipped_orders') }}"><i class="ti-more"></i>Shipped Orders</a></li>
+            <li><a href="{{ route('delivered_orders') }}"><i class="ti-more"></i>Delivered Orders</a></li>
+            <li><a href="{{ route('canceled_orders') }}"><i class="ti-more"></i>Canceled Orders</a></li>
                         </ul>
                     </li>
 

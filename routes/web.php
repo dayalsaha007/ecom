@@ -228,19 +228,19 @@ Route::controller(ShippingareaController::class)->group(function(){
         Route::get('/pending/orders', 'pending_to_confirm')->name('pending_to_confirm');
         Route::post('/update/pending/status', 'pending_order_status');
 
-        Route::get('/confirm/processing', 'confirm_to_processing')->name('confirm_to_processing');
+        Route::get('/confirm/processing', 'confirmed_orders')->name('confirmed_orders');
 
-        Route::get('/processing/picked', 'processing_to_picked')->name('processing_to_picked');
+        Route::get('/processing/picked', 'processing_orders')->name('processing_orders');
 
-        Route::get('/picked/shipped', 'picked_to_shipped')->name('picked_to_shipped');
+        Route::get('/picked/shipped', 'picked_orders')->name('picked_orders');
 
-        Route::get('/shipped/deliver', 'shipped_to_delivered')->name('shipped_to_delivered');
+        Route::get('/shipped/deliver', 'shipped_orders')->name('shipped_orders');
 
-        Route::get('/cancel/orders', 'cancel_orders')->name('cancel_orders');
+        Route::get('/delivered/orders', 'delivered_orders')->name('delivered_orders');
 
+        Route::get('/cancel/orders', 'canceled_orders')->name('canceled_orders');
 
     });
-
 
 });
 
