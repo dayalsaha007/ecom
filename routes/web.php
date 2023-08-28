@@ -8,6 +8,8 @@ use App\Http\Controllers\admin\category\CategoryController;
 use App\Http\Controllers\admin\coupon\CouponController;
 use App\Http\Controllers\admin\order\OrderController;
 use App\Http\Controllers\admin\product\ProductController;
+use App\Http\Controllers\admin\report\ReportController;
+use App\Http\Controllers\admin\return_order\ReturnController;
 use App\Http\Controllers\admin\shippingarea\ShippingareaController;
 use App\Http\Controllers\admin\subcategory\SubcategoryController;
 use App\Http\Controllers\admin\subsubcategory\SubsubController;
@@ -47,6 +49,9 @@ use Gloudemans\Shoppingcart\Facades\Cart;
         Route::get('/my_order', 'my_order')->middleware(['auth', 'verified'])->name('my_order');
         Route::get('/order_details/{order_id}', 'order_details')->middleware(['auth', 'verified'])->name('order_details');
         Route::get('/invoice_download/{order_id}', 'invoice_download')->middleware(['auth', 'verified'])->name('invoice_download');
+        Route::post('/return/order/{order_id}', 'return_order')->middleware(['auth', 'verified'])->name('return_order');
+        Route::get('/return/order', 'return_order_list')->middleware(['auth', 'verified'])->name('return_order_list');
+        Route::get('/cancel/order', 'cancel_order_list')->middleware(['auth', 'verified'])->name('cancel_order_list');
 
     });
 
@@ -226,7 +231,7 @@ Route::controller(ShippingareaController::class)->group(function(){
 
     Route::controller(OrderController::class)->group(function(){
         Route::get('/pending/orders', 'pending_to_confirm')->name('pending_to_confirm');
-        Route::post('/update/pending/status', 'pending_order_status');
+        Route::post('/update/pending/status', 'pending_order_status'); //axios url
 
         Route::get('/confirm/orders', 'confirmed_orders')->name('confirmed_orders');
 
@@ -241,6 +246,24 @@ Route::controller(ShippingareaController::class)->group(function(){
         Route::get('/cancel/orders', 'canceled_orders')->name('canceled_orders');
 
     });
+
+
+    Route::controller(ReturnController::class)->group(function(){
+        Route::get('/return/order', 'return_order')->name('return_order');
+        Route::post('/return/order/approve/{order_id}', 'approve_return_order')->name('approve_return_order');
+        Route::get('/return/order/list', 'return_order_list')->name('return_order_list');
+
+    });
+
+    Route::controller(ReportController::class)->group(function(){
+        Route::get('/all/report', 'all_reports')->name('all_reports');
+        Route::get('/report/view', 'report_view')->name('report_view');
+        Route::post('/search/by/date', 'search_by_date')->name('search_by_date');
+        Route::post('/search/by/month', 'search_by_month')->name('search_by_month');
+        Route::post('/search/by/year', 'search_by_year')->name('search_by_year');
+
+    });
+
 
 });
 

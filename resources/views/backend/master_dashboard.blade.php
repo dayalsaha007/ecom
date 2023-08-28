@@ -304,6 +304,34 @@
                         </ul>
                     </li>
 
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-product-hunt"></i>
+                            <span>Return Orders</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+            <li><a href="{{ route('return_order') }}"><i class="ti-more"></i>Return Order</a></li>
+            <li><a href="{{ route('return_order_list') }}"><i class="ti-more"></i>Return Order List</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-product-hunt"></i>
+                            <span>All Reports</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+            <li><a href="{{ route('all_reports') }}"><i class="ti-more"></i>All Reports</a></li>
+
+                        </ul>
+                    </li>
 
                     <li class="treeview">
                         <a href="#">

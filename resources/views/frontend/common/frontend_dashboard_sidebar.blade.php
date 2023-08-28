@@ -17,7 +17,9 @@
     <img src="" alt="" style="border-radious:50%;">
     <ul class="list-group list-group-flush">
         <a href="{{ route('dashboard') }}" class="btn btn-info btn-block">Profile</a>
-        <a href="{{ route('my_order') }}" class="btn btn-info btn-block">Order</a>
+        <a href="{{ route('my_order') }}" class="btn btn-info btn-block">My Order</a>
+        <a href="{{ route('return_order_list') }}" class="btn btn-info btn-block">Return Order</a>
+        <a href="{{ route('cancel_order_list') }}" class="btn btn-info btn-block">Cancel Order</a>
         <a href="{{ route('customer_logout') }}" class="btn btn-danger btn-block">Log out</a>
     </ul>
 </div>

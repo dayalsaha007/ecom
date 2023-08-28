@@ -38,8 +38,6 @@ class StripeController extends Controller
 
         // dd($charge);
 
-
-
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,
