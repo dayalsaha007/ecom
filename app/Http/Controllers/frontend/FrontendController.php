@@ -184,5 +184,14 @@ class FrontendController extends Controller
 
     }
 
+    function product_search(Request $request){
+        $search = $request->search;
+        $products = Product::where('status', 1)->where('p_name_eng', "LIKE", "%$search%")->orderBy('id', 'DESC')->get();
+        $categories = Category::latest()->get();
+        return view('frontend.search.search', [
+            'products'=>$products,
+            'categories'=>$categories,
+        ]);
+    }
 
 }

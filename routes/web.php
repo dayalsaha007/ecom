@@ -74,6 +74,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/subcategory/product/{id}/{slug}', 'subcategory_product');
     Route::get('/subsubcategory/product/{id}/{slug}', 'subsubcategory_product');
     Route::get('/product/view/modal/{id}', 'productviewajax');
+    Route::post('/product/search', 'product_search')->name('product_search');
 
 });
 
