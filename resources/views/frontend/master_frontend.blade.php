@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/rateit.css">
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/toastr.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/font-awesome.css">
@@ -152,10 +153,11 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                    <input class="search-field" name="search" placeholder="Search here..." />
+                                    <input class="search-field" id="product_search" name="search" placeholder="Search here..." />
                                     <button class="search-button" type="submit" href="#"></button>
                                 </div>
                             </form>
+                            <div id="advancedSearch" ></div>
                         </div>
                         <!-- /.search-area -->
 
@@ -469,6 +471,7 @@
     <script src="{{ asset('frontend_assets') }}/assets/js/wow.min.js"></script>
     <script src="{{ asset('frontend_assets') }}/assets/js/scripts.js"></script>
     <script src="{{ asset('frontend_assets') }}/assets/js/toastr.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <!--sweet alert2 cdn---->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -1150,8 +1153,49 @@
     </script>
 <!-- Coupon Removed-->
 
+        {{-- <script>
+
+        $("body").on("keyup", "#search", function(){
+                let text = $("#search").val();
+
+                $.ajax({
+                    type:"POST",
+                    dataType:"json",
+                    url: "{{ url('/advanced/product/search') }}",
+                    data:{search:text},
+                    success:function(result){
+                        $("#advancedSearch").html(result);
+
+
+                    }
+                });
+
+
+        });
+        </script> --}}
+
+        <script>
+              var availableTags = [];
+
+              $.ajax({
+                type: "GET",
+                url: "/product_list",
+                success: function (response) {
+                    autoComplete(response);
+                }
+              });
+
+              function autoComplete(availableTags){
+                    $( "#product_search" ).autocomplete({
+                    source: availableTags
+                });
+              }
+
+        </script>
+
 
  @yield('footer_script')
+
 
 
 </body>

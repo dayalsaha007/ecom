@@ -185,6 +185,10 @@ class FrontendController extends Controller
     }
 
     function product_search(Request $request){
+
+        $request->validate([
+            'search'=> 'required',
+        ]);
         $search = $request->search;
         $products = Product::where('status', 1)->where('p_name_eng', "LIKE", "%$search%")->orderBy('id', 'DESC')->get();
         $categories = Category::latest()->get();
@@ -193,5 +197,27 @@ class FrontendController extends Controller
             'categories'=>$categories,
         ]);
     }
+
+
+    // function advanced_product_search(Request $request){
+
+    //     $search = $request->search;
+    //     $products = Product::where('p_name_eng', "LIKE", "%$search%")->select('p_name_eng', 'p_image')->limit(5)->get();
+    //     return view('frontend.search.advanced_search', compact('products'));
+    // }
+
+
+    function productlistajax(){
+
+        $products = Product::select('p_name_eng')->where('status', 1)->get();
+        $data = [];
+        
+        foreach($products as $product){
+            $data[] = $product['p_name_eng'];
+        }
+
+        return $data;
+    }
+
 
 }

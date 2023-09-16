@@ -3,7 +3,7 @@
 
 
 @section('page_header')
-    Ecommerce Admin - All Blog
+    Ecommerce Admin - Search
 @endsection
 
 
