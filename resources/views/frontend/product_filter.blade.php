@@ -50,8 +50,9 @@
   <!-- /.sidebar-widget -->
   <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
 
-  <!-- ============================================== PRICE SILDER============================================== -->
-  <div class="sidebar-widget wow fadeInUp">
+
+ <!-- ============================================== PRICE SILDER============================================== -->
+ <div class="sidebar-widget wow fadeInUp">
     <div class="widget-header">
       <h4 class="widget-title">Price Slider</h4>
     </div>
@@ -66,6 +67,8 @@
   </div>
   <!-- /.sidebar-widget -->
   <!-- ============================================== PRICE SILDER : END ============================================== -->
+
+
   <!-- ============================================== MANUFACTURES============================================== -->
   <div class="sidebar-widget wow fadeInUp">
     <div class="widget-header">

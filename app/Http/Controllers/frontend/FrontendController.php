@@ -152,9 +152,17 @@ class FrontendController extends Controller
         ]);
     }
 
-    function subcategory_product($id, $slug){
+    function subcategory_product(Request $request, $id, $slug){
         $products = Product::where('status', 1)->where('sc_id',$id)->orderBy('id', 'DESC')->paginate(3);
         $categories = Category::latest()->get();
+
+        if($request->ajax()){
+            $list_view = view('frontend.list_view_product', compact('products'))->render();
+            $grid_view = view('frontend.grid_view_product', compact('products'))->render();
+
+            return response()->json(['grid_view'=> $grid_view, 'list_view ', $list_view ]);
+        }
+
         return view('frontend.subcat_view', [
             'products'=>$products,
             'categories'=>$categories,
@@ -211,7 +219,7 @@ class FrontendController extends Controller
 
         $products = Product::select('p_name_eng')->where('status', 1)->get();
         $data = [];
-        
+
         foreach($products as $product){
             $data[] = $product['p_name_eng'];
         }
