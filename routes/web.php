@@ -264,9 +264,7 @@ Route::controller(ShippingareaController::class)->group(function(){
         Route::post('/search/by/date', 'search_by_date')->name('search_by_date');
         Route::post('/search/by/month', 'search_by_month')->name('search_by_month');
         Route::post('/search/by/year', 'search_by_year')->name('search_by_year');
-
     });
-
 
 });
 
